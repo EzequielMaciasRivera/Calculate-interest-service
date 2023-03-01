@@ -1,11 +1,11 @@
 package practicascloud.baselineservice.service;
 
-import practicascloud.baselineservice.model.CalculusDTO;
-import practicascloud.baselineservice.model.CalculusDTOOput;
+import practicascloud.baselineservice.model.CalculusDTOInput;
+import practicascloud.baselineservice.model.CalculusDTOOutput;
 
 import java.util.List;
 
 public interface CalculatorService {
     //String saludar();
-    List <CalculusDTOOput> interstDataCalculator(CalculusDTO inputData);
+    List <CalculusDTOOutput> interstDataCalculator(CalculusDTOInput inputData);
 }

@@ -1,12 +1,9 @@
 package practicascloud.baselineservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import practicascloud.baselineservice.model.CalculusDTO;
-import practicascloud.baselineservice.model.CalculusDTOOput;
+import practicascloud.baselineservice.model.CalculusDTOInput;
+import practicascloud.baselineservice.model.CalculusDTOOutput;
 import practicascloud.baselineservice.service.CalculatorService;
 
 import java.util.List;
@@ -29,7 +26,7 @@ public class CalculateController {
     }
 
     @PostMapping(value = "/interestForm", produces = "application/json;charset=UTF-8")
-    public List<CalculusDTOOput> createCalculus(@RequestBody CalculusDTO calculusDTO) {
-        return calculatorService.interstDataCalculator(calculusDTO);
+    public List<CalculusDTOOutput> createCalculus(@RequestBody CalculusDTOInput calculusDTOInput) {
+        return calculatorService.interstDataCalculator(calculusDTOInput);
     }
 }

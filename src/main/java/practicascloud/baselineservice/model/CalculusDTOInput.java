@@ -1,10 +1,9 @@
 package practicascloud.baselineservice.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 // @AllArgsConstructor
 @Data
-public class CalculusDTO {
+public class CalculusDTOInput {
     @Override
     public String toString() {
         return "CalculusDTO{" +
@@ -22,7 +21,7 @@ public class CalculusDTO {
     private int investmentYears;
     private int performance;
 
-    public CalculusDTO() {
+    public CalculusDTOInput() {
         initialBalance = 0;
         annualContribution = 0;
         annulIncrease = 0;
@@ -31,8 +30,8 @@ public class CalculusDTO {
     }
 
     // Method overloading
-    public CalculusDTO(int initialBalance, int annualContribution, int annulIncrease,
-                        int investmentYears, int performance) {
+    public CalculusDTOInput(int initialBalance, int annualContribution, int annulIncrease,
+                            int investmentYears, int performance) {
         this.initialBalance = initialBalance;
         this.annualContribution = annualContribution;
         this.annulIncrease = annulIncrease;

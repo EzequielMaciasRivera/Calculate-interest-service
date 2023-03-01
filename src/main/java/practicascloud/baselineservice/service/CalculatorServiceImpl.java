@@ -1,8 +1,8 @@
 package practicascloud.baselineservice.service;
 
 import org.springframework.stereotype.Service;
-import practicascloud.baselineservice.model.CalculusDTO;
-import practicascloud.baselineservice.model.CalculusDTOOput;
+import practicascloud.baselineservice.model.CalculusDTOInput;
+import practicascloud.baselineservice.model.CalculusDTOOutput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,16 +74,16 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     @Override
-    public List<CalculusDTOOput> interstDataCalculator(CalculusDTO inputData) {
+    public List<CalculusDTOOutput> interstDataCalculator(CalculusDTOInput inputData) {
 
         int getYear = 0;
         int getInitialBalance = inputData.getInitialBalance();
         int getContribution = inputData.getAnnualContribution();
         int getPerformance = 0;
         int getFinalBalance = 0;
-        List<CalculusDTOOput> response = new ArrayList<>();
+        List<CalculusDTOOutput> response = new ArrayList<>();
         for (int i = 1; i <= inputData.getInvestmentYears(); i++) {
-            CalculusDTOOput calculation = new CalculusDTOOput();
+            CalculusDTOOutput calculation = new CalculusDTOOutput();
             ////
             getYear = calculateYears(i);
 

@@ -1,8 +1,6 @@
 package practicascloud.baselineservice.model;
 
-import java.util.ArrayList;
-
-public class CalculusDTOOput {
+public class CalculusDTOOutput {
     private int year;
     private int initialBalance;
     private int annualContribution;
