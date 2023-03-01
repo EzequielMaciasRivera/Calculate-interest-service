@@ -1,7 +1,6 @@
 package practicascloud.baselineservice.model;
 
 import lombok.Data;
-// @AllArgsConstructor
 @Data
 public class CalculusDTOInput {
     private int initialBalance;
@@ -9,24 +8,6 @@ public class CalculusDTOInput {
     private int annulIncrease;
     private int investmentYears;
     private int performance;
-
-    public CalculusDTOInput() {
-        initialBalance = 0;
-        annualContribution = 0;
-        annulIncrease = 0;
-        investmentYears = 0;
-        performance = 0;
-    }
-
-    // Method overloading
-    public CalculusDTOInput(int initialBalance, int annualContribution, int annulIncrease,
-                            int investmentYears, int performance) {
-        this.initialBalance = initialBalance;
-        this.annualContribution = annualContribution;
-        this.annulIncrease = annulIncrease;
-        this.investmentYears = investmentYears;
-        this.performance = performance;
-    }
 
     // Getters and Setters methods
     public int getInitialBalance() {

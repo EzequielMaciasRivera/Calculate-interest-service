@@ -9,21 +9,14 @@ import java.util.List;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
-
-    // @Override
-    //public String saludar() {
-
-    //  return "Hola desde Spring";
-    //}
-
     // Methods
     private int calculateYears(int year) {
-        int yearCounter = 0;
+        int yearCounter = 1;
         if (year == 1) {
-            return yearCounter = year;
+            return year;
         }
         if (year > 1) {
-            yearCounter = year++;
+            yearCounter++;
         }
         return yearCounter;
     }
@@ -32,7 +25,7 @@ public class CalculatorServiceImpl implements CalculatorService {
         // For consecutive years, this value is the same as the getFinalBalance of the previous year.
         int newBalance = 0;
         if (year == 1) {
-            return newBalance = initialBalance;
+            return initialBalance;
         }
         if (year > 1) {
             newBalance = getFinalBalance;
@@ -49,7 +42,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 
         int totalContribution = 0;
         if (year == 1) {
-            return totalContribution = annualContribution;
+            return annualContribution;
         }
         if (year > 1) {
             double save = 1 + (double) annulIncrease / 100;
@@ -59,18 +52,16 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     private int calculatePerformance(int getInitialBalance, int getContribution, int performance) {
-        // Rendimiento = (Saldo inicial + Aportación) * (Rendimiento de inversión / 100)
-        int totalPerformnace = 0;
-        int SalIniAndContri = getInitialBalance + getContribution;
+        // totalPerformance = (Initial Balance + Contribution) * (Investment Yield / 100)
+        int totalPerformance = 0;
         double perfDivided = (double) performance / 100;
-        totalPerformnace = (int) (SalIniAndContri * perfDivided);
-        return totalPerformnace;
+        totalPerformance = (int) ((getInitialBalance + getContribution) * perfDivided);
+        return totalPerformance;
     }
 
     private int calculateFinalBalance(int getInitialBalance, int getContribution, int getPerformance) {
         // Initial balance + Contribution + Performance
-        int finalBalance = getInitialBalance + getContribution + getPerformance;
-        return finalBalance;
+        return getInitialBalance + getContribution + getPerformance;
     }
 
     @Override
