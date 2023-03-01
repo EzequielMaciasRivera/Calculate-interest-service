@@ -4,17 +4,6 @@ import lombok.Data;
 // @AllArgsConstructor
 @Data
 public class CalculusDTOInput {
-    @Override
-    public String toString() {
-        return "CalculusDTO{" +
-                "initialBalance=" + initialBalance +
-                ", annualContribution=" + annualContribution +
-                ", annulIncrease=" + annulIncrease +
-                ", investmentYears=" + investmentYears +
-                ", performance=" + performance +
-                '}';
-    }
-
     private int initialBalance;
     private int annualContribution;
     private int annulIncrease;
@@ -79,6 +68,4 @@ public class CalculusDTOInput {
     public void setPerformance(int performance) {
         this.performance = performance;
     }
-
-
 }

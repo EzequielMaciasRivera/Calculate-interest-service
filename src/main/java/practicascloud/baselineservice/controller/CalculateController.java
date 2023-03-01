@@ -14,17 +14,6 @@ import java.util.List;
 public class CalculateController {
     @Autowired
     private CalculatorService calculatorService;
-
-    @GetMapping(value = "hola", produces = "application/json;charset=UTF-8")
-    public String getObject() {
-        // Returns object with calculated interest data
-        // List<CalculusDTO> lista = new ArrayList<>();
-
-
-      //return calculus;
-     return "Hola!!";
-    }
-
     @PostMapping(value = "/interestForm", produces = "application/json;charset=UTF-8")
     public List<CalculusDTOOutput> createCalculus(@RequestBody CalculusDTOInput calculusDTOInput) {
         return calculatorService.interstDataCalculator(calculusDTOInput);

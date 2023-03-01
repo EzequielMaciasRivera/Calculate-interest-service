@@ -6,6 +6,5 @@ import practicascloud.baselineservice.model.CalculusDTOOutput;
 import java.util.List;
 
 public interface CalculatorService {
-    //String saludar();
-    List <CalculusDTOOutput> interstDataCalculator(CalculusDTOInput inputData);
+   List <CalculusDTOOutput> interstDataCalculator(CalculusDTOInput inputData);
 }
