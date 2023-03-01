@@ -6,7 +6,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import practicascloud.baselineservice.model.CalculusDTO;
+import practicascloud.baselineservice.model.CalculusDTOOput;
 import practicascloud.baselineservice.service.CalculatorService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/calculator")
@@ -25,8 +28,8 @@ public class CalculateController {
      return "Hola!!";
     }
 
-    @PostMapping("/interestForm")
-    public String createCalculus(@RequestBody CalculusDTO calculusDTO) {
-        return calculusDTO.toString();
+    @PostMapping(value = "/interestForm", produces = "application/json;charset=UTF-8")
+    public List<CalculusDTOOput> createCalculus(@RequestBody CalculusDTO calculusDTO) {
+        return calculatorService.interstDataCalculator(calculusDTO);
     }
 }

@@ -1,19 +1,23 @@
 package practicascloud.baselineservice.service;
 
 import org.springframework.stereotype.Service;
+import practicascloud.baselineservice.model.CalculusDTO;
+import practicascloud.baselineservice.model.CalculusDTOOput;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class CalculatorServiceImpl implements CalculatorService{
+public class CalculatorServiceImpl implements CalculatorService {
 
     // @Override
     //public String saludar() {
 
-      //  return "Hola desde Spring";
+    //  return "Hola desde Spring";
     //}
 
     // Methods
-    @Override
-    public int calculateYears(int year) {
+    private int calculateYears(int year) {
         int yearCounter = 0;
         if (year == 1) {
             return yearCounter = year;
@@ -23,8 +27,8 @@ public class CalculatorServiceImpl implements CalculatorService{
         }
         return yearCounter;
     }
-    @Override
-    public int calculateInitialBalance(int year, int initialBalance, int getFinalBalance) {
+
+    private int calculateInitialBalance(int year, int initialBalance, int getFinalBalance) {
         // For consecutive years, this value is the same as the getFinalBalance of the previous year.
         int newBalance = 0;
         if (year == 1) {
@@ -35,8 +39,8 @@ public class CalculatorServiceImpl implements CalculatorService{
         }
         return newBalance;
     }
-    @Override
-    public int calculateContribution(int year, int annualContribution, int annulIncrease) {
+
+    private int calculateContribution(int year, int annualContribution, int annulIncrease) {
         // For the first year (beginning of the investment), this value is the same as the annual
         // contribution.
         // For subsequent years, this value is calculated as follows:
@@ -53,8 +57,8 @@ public class CalculatorServiceImpl implements CalculatorService{
         }
         return totalContribution;
     }
-    @Override
-    public int calculatePerformance(int getInitialBalance, int getContribution, int performance) {
+
+    private int calculatePerformance(int getInitialBalance, int getContribution, int performance) {
         // Rendimiento = (Saldo inicial + Aportación) * (Rendimiento de inversión / 100)
         int totalPerformnace = 0;
         int SalIniAndContri = getInitialBalance + getContribution;
@@ -63,9 +67,42 @@ public class CalculatorServiceImpl implements CalculatorService{
         return totalPerformnace;
     }
 
-    public int calculateFinalBalance(int getInitialBalance, int getContribution, int getPerformance) {
+    private int calculateFinalBalance(int getInitialBalance, int getContribution, int getPerformance) {
         // Initial balance + Contribution + Performance
         int finalBalance = getInitialBalance + getContribution + getPerformance;
         return finalBalance;
+    }
+
+    @Override
+    public List<CalculusDTOOput> interstDataCalculator(CalculusDTO inputData) {
+
+        int getYear = 0;
+        int getInitialBalance = inputData.getInitialBalance();
+        int getContribution = inputData.getAnnualContribution();
+        int getPerformance = 0;
+        int getFinalBalance = 0;
+        List<CalculusDTOOput> response = new ArrayList<>();
+        for (int i = 1; i <= inputData.getInvestmentYears(); i++) {
+            CalculusDTOOput calculation = new CalculusDTOOput();
+            ////
+            getYear = calculateYears(i);
+
+            getInitialBalance = calculateInitialBalance(getYear, getInitialBalance, getFinalBalance);
+
+            getContribution = calculateContribution(getYear, getContribution, inputData.getAnnulIncrease());
+
+            getPerformance = calculatePerformance(getInitialBalance, getContribution, inputData.getPerformance());
+
+            getFinalBalance = calculateFinalBalance(getInitialBalance, getContribution, getPerformance);
+
+            calculation.setYear(getYear);
+            calculation.setInitialBalance(getInitialBalance);
+            calculation.setAnnualContribution(getContribution);
+            calculation.setPerformance(getPerformance);
+            calculation.setEndingBalance(getFinalBalance);
+
+            response.add(calculation);
+        }
+        return response;
     }
 }
