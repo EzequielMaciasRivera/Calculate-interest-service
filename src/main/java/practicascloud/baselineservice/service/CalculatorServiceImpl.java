@@ -10,17 +10,6 @@ import java.util.List;
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
     // Methods
-    private int calculateYears(int year) {
-        int yearCounter = 1;
-        if (year == 1) {
-            return year;
-        }
-        if (year > 1) {
-            yearCounter++;
-        }
-        return yearCounter;
-    }
-
     private int calculateInitialBalance(int year, int initialBalance, int getFinalBalance) {
         // For consecutive years, this value is the same as the getFinalBalance of the previous year.
         int newBalance = 0;
@@ -65,9 +54,8 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     @Override
-    public List<CalculusDTOOutput> interstDataCalculator(CalculusDTOInput inputData) {
+    public List<CalculusDTOOutput> interestDataCalculator(CalculusDTOInput inputData) {
 
-        int getYear = 0;
         int getInitialBalance = inputData.getInitialBalance();
         int getContribution = inputData.getAnnualContribution();
         int getPerformance = 0;
@@ -75,18 +63,16 @@ public class CalculatorServiceImpl implements CalculatorService {
         List<CalculusDTOOutput> response = new ArrayList<>();
         for (int i = 1; i <= inputData.getInvestmentYears(); i++) {
             CalculusDTOOutput calculation = new CalculusDTOOutput();
-            ////
-            getYear = calculateYears(i);
 
-            getInitialBalance = calculateInitialBalance(getYear, getInitialBalance, getFinalBalance);
+            getInitialBalance = calculateInitialBalance(i, getInitialBalance, getFinalBalance);
 
-            getContribution = calculateContribution(getYear, getContribution, inputData.getAnnulIncrease());
+            getContribution = calculateContribution(i, getContribution, inputData.getAnnulIncrease());
 
             getPerformance = calculatePerformance(getInitialBalance, getContribution, inputData.getPerformance());
 
             getFinalBalance = calculateFinalBalance(getInitialBalance, getContribution, getPerformance);
 
-            calculation.setYear(getYear);
+            calculation.setYear(i);
             calculation.setInitialBalance(getInitialBalance);
             calculation.setAnnualContribution(getContribution);
             calculation.setPerformance(getPerformance);

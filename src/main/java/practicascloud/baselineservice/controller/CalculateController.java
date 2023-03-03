@@ -25,6 +25,6 @@ public class CalculateController {
     private CalculatorService calculatorService;
     @PostMapping(value = "/interestForm", produces = "application/json;charset=UTF-8")
     public List<CalculusDTOOutput> createCalculus(@RequestBody CalculusDTOInput calculusDTOInput) {
-        return calculatorService.interstDataCalculator(calculusDTOInput);
+        return calculatorService.interestDataCalculator(calculusDTOInput);
     }
 }
