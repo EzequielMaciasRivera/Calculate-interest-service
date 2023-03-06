@@ -2,10 +2,10 @@ package practicascloud.baselineservice.model;
 
 public class CalculusDTOOutput {
     private int year;
-    private int initialBalance;
-    private int annualContribution;
-    private int performance;
-    private int endingBalance;
+    private double initialBalance;
+    private double annualContribution;
+    private double performance;
+    private double endingBalance;
 
     // Getters and Setters
     public int getYear() {
@@ -16,35 +16,35 @@ public class CalculusDTOOutput {
         this.year = year;
     }
 
-    public int getInitialBalance() {
+    public double getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(int initialBalance) {
+    public void setInitialBalance(double initialBalance) {
         this.initialBalance = initialBalance;
     }
 
-    public int getAnnualContribution() {
+    public double getAnnualContribution() {
         return annualContribution;
     }
 
-    public void setAnnualContribution(int annualContribution) {
+    public void setAnnualContribution(double annualContribution) {
         this.annualContribution = annualContribution;
     }
 
-    public int getPerformance() {
+    public double getPerformance() {
         return performance;
     }
 
-    public void setPerformance(int performance) {
+    public void setPerformance(double performance) {
         this.performance = performance;
     }
 
-    public int getEndingBalance() {
+    public double getEndingBalance() {
         return endingBalance;
     }
 
-    public void setEndingBalance(int endingBalance) {
+    public void setEndingBalance(double endingBalance) {
         this.endingBalance = endingBalance;
     }
 }

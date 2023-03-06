@@ -4,15 +4,16 @@ import org.springframework.stereotype.Service;
 import practicascloud.baselineservice.model.CalculusDTOInput;
 import practicascloud.baselineservice.model.CalculusDTOOutput;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
     // Methods
-    private int calculateInitialBalance(int year, int initialBalance, int getFinalBalance) {
+    private double calculateInitialBalance(int year, double initialBalance, double getFinalBalance) {
         // For consecutive years, this value is the same as the getFinalBalance of the previous year.
-        int newBalance = 0;
+        double newBalance = 0;
         if (year == 1) {
             return initialBalance;
         }
@@ -22,33 +23,33 @@ public class CalculatorServiceImpl implements CalculatorService {
         return newBalance;
     }
 
-    private int calculateContribution(int year, int annualContribution, int annulIncrease) {
+    private double calculateContribution(int year, double annualContribution, double annulIncrease) {
         // For the first year (beginning of the investment), this value is the same as the annual
         // contribution.
         // For subsequent years, this value is calculated as follows:
         // Contribution = (Annual contribution of the previous year) * (1 + (% Increase in contribution
         // / 100))
 
-        int totalContribution = 0;
+        double totalContribution = 0;
         if (year == 1) {
             return annualContribution;
         }
         if (year > 1) {
-            double save = 1 + (double) annulIncrease / 100;
-            totalContribution = (int) (annualContribution * save);
+            double save = 1 + annulIncrease / 100;
+            totalContribution = annualContribution * save;
         }
         return totalContribution;
     }
 
-    private int calculatePerformance(int getInitialBalance, int getContribution, int performance) {
+    private double calculatePerformance(double getInitialBalance, double getContribution, double performance) {
         // totalPerformance = (Initial Balance + Contribution) * (Investment Yield / 100)
-        int totalPerformance = 0;
-        double perfDivided = (double) performance / 100;
-        totalPerformance = (int) ((getInitialBalance + getContribution) * perfDivided);
+        double totalPerformance = 0;
+        double perfDivided = performance / 100;
+        totalPerformance = ((getInitialBalance + getContribution) * perfDivided);
         return totalPerformance;
     }
 
-    private int calculateFinalBalance(int getInitialBalance, int getContribution, int getPerformance) {
+    private double calculateFinalBalance(double getInitialBalance, double getContribution, double getPerformance) {
         // Initial balance + Contribution + Performance
         return getInitialBalance + getContribution + getPerformance;
     }
@@ -56,10 +57,10 @@ public class CalculatorServiceImpl implements CalculatorService {
     @Override
     public List<CalculusDTOOutput> interestDataCalculator(CalculusDTOInput inputData) {
 
-        int getInitialBalance = inputData.getInitialBalance();
-        int getContribution = inputData.getAnnualContribution();
-        int getPerformance = 0;
-        int getFinalBalance = 0;
+        double getInitialBalance = inputData.getInitialBalance();
+        double getContribution = inputData.getAnnualContribution();
+        double getPerformance = 0;
+        double getFinalBalance = 0;
         List<CalculusDTOOutput> response = new ArrayList<>();
         for (int i = 1; i <= inputData.getInvestmentYears(); i++) {
             CalculusDTOOutput calculation = new CalculusDTOOutput();
@@ -72,11 +73,13 @@ public class CalculatorServiceImpl implements CalculatorService {
 
             getFinalBalance = calculateFinalBalance(getInitialBalance, getContribution, getPerformance);
 
+            DecimalFormat decimal = new DecimalFormat("#.00");
+
             calculation.setYear(i);
-            calculation.setInitialBalance(getInitialBalance);
-            calculation.setAnnualContribution(getContribution);
-            calculation.setPerformance(getPerformance);
-            calculation.setEndingBalance(getFinalBalance);
+            calculation.setInitialBalance(Double.parseDouble(decimal.format(getInitialBalance)));
+            calculation.setAnnualContribution(Double.parseDouble(decimal.format(getContribution)));
+            calculation.setPerformance(Double.parseDouble(decimal.format(getPerformance)));
+            calculation.setEndingBalance(Double.parseDouble(decimal.format(getFinalBalance)));
 
             response.add(calculation);
         }

@@ -3,34 +3,34 @@ package practicascloud.baselineservice.model;
 import lombok.Data;
 @Data
 public class CalculusDTOInput {
-    private int initialBalance;
-    private int annualContribution;
-    private int annulIncrease;
+    private double initialBalance;
+    private double annualContribution;
+    private double annulIncrease;
     private int investmentYears;
-    private int performance;
+    private double performance;
 
     // Getters and Setters methods
-    public int getInitialBalance() {
+    public double getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(int initialBalance) {
+    public void setInitialBalance(double initialBalance) {
         this.initialBalance = initialBalance;
     }
 
-    public int getAnnualContribution() {
+    public double getAnnualContribution() {
         return annualContribution;
     }
 
-    public void setAnnualContribution(int annualContribution) {
+    public void setAnnualContribution(double annualContribution) {
         this.annualContribution = annualContribution;
     }
 
-    public int getAnnulIncrease() {
+    public double getAnnulIncrease() {
         return annulIncrease;
     }
 
-    public void setAnnulIncrease(int annulIncrease) {
+    public void setAnnulIncrease(double annulIncrease) {
         this.annulIncrease = annulIncrease;
     }
 
@@ -42,11 +42,11 @@ public class CalculusDTOInput {
         this.investmentYears = investmentYears;
     }
 
-    public int getPerformance() {
+    public double getPerformance() {
         return performance;
     }
 
-    public void setPerformance(int performance) {
+    public void setPerformance(double performance) {
         this.performance = performance;
     }
 }
