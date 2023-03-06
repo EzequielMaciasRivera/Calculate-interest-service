@@ -1,0 +1,2 @@
+Command to run the server:
+mvnw.cmd spring-boot:run
